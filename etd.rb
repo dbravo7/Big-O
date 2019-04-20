@@ -27,13 +27,15 @@ def my_min_linear(arr)
   p smallest_ele
 end 
 
+# O(n^2)
+
 def largest_contiguous_subsum(arr)
   sub_arrays = []
   arr.each_with_index do |num1, idx1|
     sub_arrays << [num1]
     arr.each_with_index do |num2, idx2|
       if idx1 != idx2 && idx2 > idx1
-      sub_arrays << [num1, num2]
+      sub_arrays << arr[idx1..idx2]
       end 
     end 
   end 
@@ -44,6 +46,22 @@ def largest_sum(sub_arrays)
   sub_arrays.map {|arr| arr.reduce(:+)}.max
 end 
 
+#----------------
+# O(n) linear time
+# O(1) constant space
+def largest_contiguous_subsum_faster(arr)
+  largest = arr.first 
+  current = arr.first 
+
+  return p arr.max if arr.all? {|num| num < 0}
+
+  arr.drop(1).each do |num|
+    current = 0 if current < 0 
+    current += num
+    largest = current if current > largest 
+  end 
+  p largest
+end 
 
 
 if $PROGRAM_NAME == __FILE__
@@ -52,20 +70,24 @@ if $PROGRAM_NAME == __FILE__
   my_min_linear(list) #=> -5
 
     list2 = [5, 3, -7]
-    largest_contiguous_subsum(list2) # => 8
+    # largest_contiguous_subsum(list2) # => 8
 
-    # possible sub-sums
-    [5]           # => 5
-    [5, 3]        # => 8 --> we want this one
-    [5, 3, -7]    # => 1
-    [3]           # => 3
-    [3, -7]       # => -4
-    [-7]          # => -7
+    # # possible sub-sums
+    # [5]           # => 5
+    # [5, 3]        # => 8 --> we want this one
+    # [5, 3, -7]    # => 1
+    # [3]           # => 3
+    # [3, -7]       # => -4
+    # [-7]          # => -7
 
-    # list3 = [2, 3, -6, 7, -6, 7]
+    list3 = [2, 3, -6, 7, -6, 7]
     # largest_contiguous_subsum(list3) # => 8 (from [7, -6, 7])
 
-    # list4 = [-5, -1, -3]
+    list4 = [-5, -1, -3]
     # largest_contiguous_subsum(list4) # => -1 (from [-1])
+
+    largest_contiguous_subsum_faster(list2) #=> 8
+    largest_contiguous_subsum_faster(list3) #=> 8
+    largest_contiguous_subsum_faster(list4) #=> -1
 
 end 

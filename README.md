@@ -1,0 +1,1 @@
+Several exercises using Big O to determine speed of algorithms. 

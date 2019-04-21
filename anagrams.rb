@@ -56,6 +56,25 @@ end
 #   w.join("")
 # end 
 
+#O(n) linear time
+#O(1) constant space 
+  #from solution: 
+    # Here, the intuitive answer to the space complexity is
+    # O(n) because we're adding a separate key in the hash
+    # for each character. But if the keys in the hash are single 
+    # characters, then how many different keys can we have? 
+    # How many different chars in the alphabet? A constant number 
+    # (26 + numbers and symbols for English alphabet).
+def fourth_anagram?(word1, word2)
+  hash1 = Hash.new(0)
+  hash2 = Hash.new(0)
+
+  word1.each_char {|char| hash1[char] += 1}
+  word2.each_char {|char| hash2[char] += 1}
+
+  p hash1 == hash2
+
+end 
 
 
 if $PROGRAM_NAME == __FILE__
@@ -63,8 +82,10 @@ if $PROGRAM_NAME == __FILE__
   first_anagram?("gizmo", "sally")    #=> false
   second_anagram?("gizmo", "sally")    #=> false
   third_anagram?("gizmo", "sally")    #=> false
+  fourth_anagram?("gizmo", "sally")    #=> false
   # anagram?("elvis", "lives")    #=> true
   first_anagram?("elvis", "lives")    #=> true
   second_anagram?("elvis", "lives")    #=> true
   third_anagram?("elvis", "lives")    #=> true
+  fourth_anagram?("elvis", "lives")    #=> true
 end 

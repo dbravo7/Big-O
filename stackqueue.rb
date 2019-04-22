@@ -11,14 +11,14 @@ class StackQueue
   end 
 
   def empty?
-    @stack.empty? 
+    @stack.empty? && in_stack.empty? 
   end 
 
   def enqueue(val)
-
+    @in_stack.push(val)
   end 
 
   def dequeue
-    @in_stack.push(@stack.pop)
+    @stack.pop 
   end 
 end 

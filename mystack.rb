@@ -16,6 +16,18 @@ class MyStack
     @store.empty?
   end 
 
+  def max
+    i = -1 
+    hash = @store.to_h {|num| [num, i += 1]} 
+    hash.max.first 
+  end 
+
+  def min
+    i = -1 
+    hash = @store.to_h {|num| [num, i += 1]} 
+    hash.min.first
+  end 
+
   def pop
     @store.pop
   end 

@@ -17,11 +17,11 @@ class MyQueue
   end 
 
   def enqueue(val)
-    @store.unshift(val)
+    @store.push(val)
   end 
 
   def dequeue
-    @store.pop 
+    @store.shift 
   end 
 
 end 

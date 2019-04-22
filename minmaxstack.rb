@@ -6,7 +6,7 @@ class MinMaxStack
   end 
 
   def peek
-    @stack.last 
+    @stack.peek unless empty? 
   end 
 
   def size

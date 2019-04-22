@@ -1,4 +1,4 @@
-
+require 'byebug'
 class MyStack
   def initialize(store = [])
     @store = []
@@ -18,13 +18,13 @@ class MyStack
 
   def max
     i = -1 
-    hash = @store.to_h {|num| [num, i += 1]} 
+    hash = @store.map {|num| [num, i += 1]}.to_h 
     hash.max.first 
   end 
 
   def min
     i = -1 
-    hash = @store.to_h {|num| [num, i += 1]} 
+    hash = @store.map {|num| [num, i += 1]}.to_h
     hash.min.first
   end 
 

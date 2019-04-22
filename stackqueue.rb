@@ -19,6 +19,13 @@ class StackQueue
   end 
 
   def dequeue
-    @stack.pop 
+    # queueify if @stack.empty? 
+
+    @stack.pop
+  end
+  
+  private
+  def queueify
+    @stack.push(@in_stack.pop) until @in_stack.empty?
   end 
 end 
